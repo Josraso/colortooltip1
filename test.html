@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - Color Tooltip Module</title>
+    <title>Test - Color Tooltip Module (Simple)</title>
     <link rel="stylesheet" href="views/css/colortooltip.css">
     <style>
         body {
@@ -61,67 +61,75 @@
     </style>
 </head>
 <body>
-    <h1>🎨 Test del Módulo Color Tooltip</h1>
+    <h1>🎨 Test del Módulo Color Tooltip (SIMPLE)</h1>
 
     <div class="status">
-        <strong>Estado:</strong> Pasa el mouse sobre cualquier input de color para ver el tooltip.
-        <br>
-        <strong>Consola:</strong> Abre la consola del navegador (F12) para ver cuántos inputs se detectaron.
+        <strong>Prueba:</strong> Pasa el mouse sobre cualquier input de color para ver el tooltip con el nombre.<br>
+        <strong>Consola:</strong> Abre la consola (F12) para ver cuántos inputs se detectaron.
     </div>
 
     <div class="test-section">
-        <h2>Diferentes tipos de inputs de color</h2>
-
-        <div class="color-group">
-            <label>Input estándar (type="color"):</label>
-            <input type="color" value="#ff6b6b" title="Color Rojo">
-        </div>
-
-        <div class="color-group">
-            <label>Con clase .input-color:</label>
-            <input type="color" class="input-color" value="#4ecdc4" data-color-tooltip="Color Turquesa">
-        </div>
-
-        <div class="color-group">
-            <label>Con clase .color-picker:</label>
-            <input type="color" class="color-picker" value="#ffe66d" data-tooltip="Color Amarillo">
-        </div>
-
-        <div class="color-group">
-            <label>Con clase .color:</label>
-            <input type="color" class="color" value="#a8e6cf" title="Color Verde Menta">
-        </div>
+        <h2>Ejemplos de tooltips</h2>
 
         <div class="color-group">
             <label>Con data-color-tooltip:</label>
-            <input type="color" value="#ff8b94" data-color-tooltip="Color Rosa Personalizado">
+            <input type="color" value="#ff6b6b" data-color-tooltip="Rojo pálido">
+        </div>
+
+        <div class="color-group">
+            <label>Con title:</label>
+            <input type="color" value="#4ecdc4" title="Turquesa brillante">
+        </div>
+
+        <div class="color-group">
+            <label>Con data-tooltip:</label>
+            <input type="color" value="#ffe66d" data-tooltip="Amarillo suave">
+        </div>
+
+        <div class="color-group">
+            <label for="color-verde">Verde menta (label asociado):</label>
+            <input type="color" id="color-verde" value="#a8e6cf">
+        </div>
+
+        <div class="color-group">
+            <label>Con placeholder:</label>
+            <input type="color" value="#ff8b94" placeholder="Rosa pastel">
+        </div>
+
+        <div class="color-group">
+            <label>Sin atributos (fallback):</label>
+            <input type="color" value="#000000">
         </div>
     </div>
 
     <div class="test-section">
-        <h2>Funcionalidades a probar</h2>
+        <h2>Qué hace el módulo</h2>
         <ul>
-            <li>✅ <strong>Hover:</strong> Pasa el mouse sobre un input para ver el tooltip</li>
-            <li>✅ <strong>Focus:</strong> Haz clic en un input (también mostrará el tooltip)</li>
-            <li>✅ <strong>Cambio de color:</strong> Cambia el color de un input y verás que se guarda en el historial</li>
-            <li>✅ <strong>Historial:</strong> Cambia varios colores y verás el historial de colores recientes</li>
-            <li>✅ <strong>Click en historial:</strong> Haz clic en un color del historial para aplicarlo al input actual</li>
-            <li>✅ <strong>Tema automático:</strong> El tooltip cambia de tema (claro/oscuro) según el color</li>
-            <li>✅ <strong>Múltiples formatos:</strong> Ver el color en HEX, RGB y HSL</li>
+            <li>✅ <strong>Muestra un tooltip simple</strong> con el NOMBRE del atributo de color</li>
+            <li>✅ <strong>NO muestra</strong> formatos HEX, RGB, HSL (eso ya lo ves en el selector)</li>
+            <li>✅ <strong>NO tiene</strong> historial de colores (innecesario)</li>
+            <li>✅ <strong>NO tiene</strong> preview del color (ya lo estás viendo)</li>
+            <li>✅ <strong>Solo un tooltip simple</strong> tipo "Rojo pálido", "Azul marino", etc.</li>
         </ul>
     </div>
 
     <div class="test-section">
-        <h2>Información técnica</h2>
-        <p>El módulo detecta automáticamente:</p>
-        <ul>
-            <li><code>input[type="color"]</code></li>
-            <li><code>.input-color</code></li>
-            <li><code>.color-picker</code></li>
-            <li><code>input.color</code></li>
-            <li><code>[class*="color-input"]</code></li>
-        </ul>
-        <p>El número de inputs detectados se mostrará en la consola del navegador.</p>
+        <h2>Prioridad del texto mostrado</h2>
+        <ol>
+            <li><code>data-color-tooltip</code> - Atributo específico del módulo</li>
+            <li><code>data-tooltip</code> - Atributo genérico</li>
+            <li><code>title</code> - Atributo HTML estándar</li>
+            <li>Texto del <code>&lt;label&gt;</code> asociado (por ID o padre)</li>
+            <li><code>placeholder</code> - Texto del placeholder</li>
+            <li>Fallback: "Color"</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>En PrestaShop</h2>
+        <p>En tu tienda PrestaShop, el módulo detectará automáticamente los selectores de atributos de color.</p>
+        <p>Si un atributo se llama "Rojo pálido" en tu catálogo, ese nombre aparecerá en el tooltip.</p>
+        <p><strong>No necesitas hacer nada más, solo instalar el módulo.</strong></p>
     </div>
 
     <script src="views/js/colortooltip.js"></script>
