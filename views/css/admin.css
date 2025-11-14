@@ -1,0 +1,28 @@
+/* Estilos para el panel de administración */
+.colortooltip-admin-preview {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+.colortooltip-admin-preview h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.colortooltip-preview-example {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#colortooltip_fieldset_0 .form-group {
+    margin-bottom: 20px;
+}
+
+#colortooltip_fieldset_0 .help-block {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 5px;
+}
