@@ -144,29 +144,54 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) {}
     };
 
-    // Event listeners - IGUAL QUE EL ORIGINAL pero con un solo tooltip
-    document.querySelectorAll('.input-color').forEach((input) => {
+    // Detectar inputs de color con múltiples selectores
+    const colorInputSelectors = [
+        'input[type="color"]',          // Selector estándar
+        '.input-color',                 // Clase personalizada
+        '.color-picker',                // Clase común en PrestaShop
+        'input.color',                  // Variante común
+        '[class*="color-input"]',       // Cualquier clase que contenga "color-input"
+    ];
 
-        input.parentNode.addEventListener('mouseenter', (e) => {
+    const colorInputs = document.querySelectorAll(colorInputSelectors.join(', '));
+
+    console.log(`[ColorTooltip] Se encontraron ${colorInputs.length} inputs de color`);
+
+    // Event listeners mejorados - funcionan directamente en el input
+    colorInputs.forEach((input) => {
+
+        input.addEventListener('mouseenter', (e) => {
             updateTooltipContent(input);
             tooltip.classList.add('active');
             moveTooltip(e);
         });
 
-        input.parentNode.addEventListener('mousemove', moveTooltip);
+        input.addEventListener('mousemove', (e) => {
+            if (tooltip.classList.contains('active')) {
+                moveTooltip(e);
+            }
+        });
 
-        input.parentNode.addEventListener('mouseleave', () => {
+        input.addEventListener('mouseleave', () => {
             tooltip.classList.remove('active');
         });
 
-        input.addEventListener('click', (e) => {
+        input.addEventListener('focus', (e) => {
+            updateTooltipContent(input);
             tooltip.classList.add('active');
             moveTooltip(e);
-            setTimeout(() => tooltip.classList.remove('active'), 700);
+        });
+
+        input.addEventListener('blur', () => {
+            tooltip.classList.remove('active');
         });
 
         input.addEventListener('change', (e) => {
             addToHistory(input.value);
+            updateTooltipContent(input);
+        });
+
+        input.addEventListener('input', (e) => {
             updateTooltipContent(input);
         });
 

@@ -9,7 +9,7 @@ class Colortooltip extends Module
     {
         $this->name = 'colortooltip';
         $this->tab = 'front_office_features';
-        $this->version = '2.0.0';
+        $this->version = '2.0.1';
         $this->author = 'Tu Nombre';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
@@ -18,8 +18,8 @@ class Colortooltip extends Module
         parent::__construct();
 
         $this->displayName = $this->l('Color Tooltip Advanced');
-        $this->description = $this->l('Sistema avanzado de tooltips para selectores de color con múltiples formatos, historial y tema adaptativo.');
-        $this->confirmUninstall = $this->l('¿Estás seguro de que quieres desinstalar este módulo?');
+        $this->description = $this->l('Sistema avanzado de tooltips para selectores de color con mï¿½ltiples formatos, historial y tema adaptativo.');
+        $this->confirmUninstall = $this->l('ï¿½Estï¿½s seguro de que quieres desinstalar este mï¿½dulo?');
     }
 
     public function install()
@@ -37,7 +37,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Instala la configuración por defecto
+     * Instala la configuraciï¿½n por defecto
      */
     private function installConfiguration()
     {
@@ -75,7 +75,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Desinstala toda la configuración
+     * Desinstala toda la configuraciï¿½n
      */
     private function uninstallConfiguration()
     {
@@ -112,7 +112,7 @@ class Colortooltip extends Module
         $this->context->controller->addCSS($this->_path . 'views/css/colortooltip.css');
         $this->context->controller->addJS($this->_path . 'views/js/colortooltip.js');
 
-        // Inyectar configuración dinámica
+        // Inyectar configuraciï¿½n dinï¿½mica
         return $this->generateDynamicCSS() . $this->generateDynamicJS();
     }
 
@@ -125,13 +125,13 @@ class Colortooltip extends Module
     }
 
     /**
-     * Genera CSS dinámico basado en la configuración
+     * Genera CSS dinï¿½mico basado en la configuraciï¿½n
      */
     private function generateDynamicCSS()
     {
         $autoTheme = Configuration::get('COLORTOOLTIP_AUTO_THEME');
         
-        // Si el tema automático está activado, no aplicamos colores fijos
+        // Si el tema automï¿½tico estï¿½ activado, no aplicamos colores fijos
         if ($autoTheme) {
             $customCss = "
                 <style>
@@ -174,7 +174,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Genera JavaScript dinámico con la configuración
+     * Genera JavaScript dinï¿½mico con la configuraciï¿½n
      */
     private function generateDynamicJS()
     {
@@ -200,7 +200,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Configuración del módulo
+     * Configuraciï¿½n del mï¿½dulo
      */
     public function getContent()
     {
@@ -218,7 +218,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Procesa y guarda la configuración
+     * Procesa y guarda la configuraciï¿½n
      */
     private function processConfiguration()
     {
@@ -244,7 +244,7 @@ class Colortooltip extends Module
         foreach ($fields as $field) {
             $value = Tools::getValue($field);
             
-            // Validaciones específicas
+            // Validaciones especï¿½ficas
             if ($field == 'COLORTOOLTIP_HISTORY_SIZE') {
                 $value = max(1, min(10, (int)$value));
             }
@@ -258,11 +258,11 @@ class Colortooltip extends Module
             Configuration::updateValue($field, $value);
         }
 
-        return $this->displayConfirmation($this->l('Configuración actualizada correctamente'));
+        return $this->displayConfirmation($this->l('Configuraciï¿½n actualizada correctamente'));
     }
 
     /**
-     * Renderiza el formulario de configuración
+     * Renderiza el formulario de configuraciï¿½n
      */
     private function renderForm()
     {
@@ -297,7 +297,7 @@ class Colortooltip extends Module
         return array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->l('Configuración de Color Tooltip'),
+                    'title' => $this->l('Configuraciï¿½n de Color Tooltip'),
                     'icon' => 'icon-cogs',
                 ),
                 'tabs' => array(
@@ -307,19 +307,19 @@ class Colortooltip extends Module
                     'help' => $this->l('Ayuda'),
                 ),
                 'input' => array(
-                    // ===== PESTAÑA APARIENCIA =====
+                    // ===== PESTAï¿½A APARIENCIA =====
                     array(
                         'type' => 'color',
                         'label' => $this->l('Color de fondo'),
                         'name' => 'COLORTOOLTIP_BG',
-                        'desc' => $this->l('Color de fondo del tooltip (solo si el tema automático está desactivado)'),
+                        'desc' => $this->l('Color de fondo del tooltip (solo si el tema automï¿½tico estï¿½ desactivado)'),
                         'tab' => 'appearance',
                     ),
                     array(
                         'type' => 'color',
                         'label' => $this->l('Color del texto'),
                         'name' => 'COLORTOOLTIP_TEXT',
-                        'desc' => $this->l('Color del texto del tooltip (solo si el tema automático está desactivado)'),
+                        'desc' => $this->l('Color del texto del tooltip (solo si el tema automï¿½tico estï¿½ desactivado)'),
                         'tab' => 'appearance',
                     ),
                     array(
@@ -342,10 +342,10 @@ class Colortooltip extends Module
                     ),
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Tamaño de fuente'),
+                        'label' => $this->l('Tamaï¿½o de fuente'),
                         'name' => 'COLORTOOLTIP_FONT_SIZE',
                         'suffix' => 'px',
-                        'desc' => $this->l('Tamaño de la fuente del texto (10-20px recomendado)'),
+                        'desc' => $this->l('Tamaï¿½o de la fuente del texto (10-20px recomendado)'),
                         'class' => 'fixed-width-sm',
                         'tab' => 'appearance',
                     ),
@@ -359,7 +359,7 @@ class Colortooltip extends Module
                         'tab' => 'appearance',
                     ),
 
-                    // ===== PESTAÑA FUNCIONALIDAD =====
+                    // ===== PESTAï¿½A FUNCIONALIDAD =====
                     array(
                         'type' => 'switch',
                         'label' => $this->l('Mostrar preview del color'),
@@ -367,7 +367,7 @@ class Colortooltip extends Module
                         'desc' => $this->l('Muestra un cuadrado con el color actual en el tooltip'),
                         'is_bool' => true,
                         'values' => array(
-                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sí')),
+                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sï¿½')),
                             array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No'))
                         ),
                         'tab' => 'functionality',
@@ -379,7 +379,7 @@ class Colortooltip extends Module
                         'desc' => $this->l('Muestra el color en formato HEX, RGB y HSL'),
                         'is_bool' => true,
                         'values' => array(
-                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sí')),
+                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sï¿½')),
                             array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No'))
                         ),
                         'tab' => 'functionality',
@@ -388,19 +388,19 @@ class Colortooltip extends Module
                         'type' => 'switch',
                         'label' => $this->l('Mostrar historial de colores'),
                         'name' => 'COLORTOOLTIP_SHOW_HISTORY',
-                        'desc' => $this->l('Muestra los últimos colores utilizados'),
+                        'desc' => $this->l('Muestra los ï¿½ltimos colores utilizados'),
                         'is_bool' => true,
                         'values' => array(
-                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sí')),
+                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sï¿½')),
                             array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No'))
                         ),
                         'tab' => 'functionality',
                     ),
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Tamaño del historial'),
+                        'label' => $this->l('Tamaï¿½o del historial'),
                         'name' => 'COLORTOOLTIP_HISTORY_SIZE',
-                        'desc' => $this->l('Número de colores a guardar en el historial (1-10)'),
+                        'desc' => $this->l('Nï¿½mero de colores a guardar en el historial (1-10)'),
                         'class' => 'fixed-width-sm',
                         'tab' => 'functionality',
                     ),
@@ -423,15 +423,15 @@ class Colortooltip extends Module
                         'tab' => 'functionality',
                     ),
 
-                    // ===== PESTAÑA AVANZADO =====
+                    // ===== PESTAï¿½A AVANZADO =====
                     array(
                         'type' => 'switch',
-                        'label' => $this->l('Tema automático'),
+                        'label' => $this->l('Tema automï¿½tico'),
                         'name' => 'COLORTOOLTIP_AUTO_THEME',
-                        'desc' => $this->l('Ajusta automáticamente el color del tooltip según la luminosidad del color seleccionado'),
+                        'desc' => $this->l('Ajusta automï¿½ticamente el color del tooltip segï¿½n la luminosidad del color seleccionado'),
                         'is_bool' => true,
                         'values' => array(
-                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sí')),
+                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sï¿½')),
                             array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No'))
                         ),
                         'tab' => 'advanced',
@@ -440,16 +440,16 @@ class Colortooltip extends Module
                         'type' => 'text',
                         'label' => $this->l('Z-index'),
                         'name' => 'COLORTOOLTIP_ZINDEX',
-                        'desc' => $this->l('Índice Z del tooltip (debe ser mayor que otros elementos)'),
+                        'desc' => $this->l('ï¿½ndice Z del tooltip (debe ser mayor que otros elementos)'),
                         'class' => 'fixed-width-md',
                         'tab' => 'advanced',
                     ),
                     array(
                         'type' => 'text',
-                        'label' => $this->l('Velocidad de animación'),
+                        'label' => $this->l('Velocidad de animaciï¿½n'),
                         'name' => 'COLORTOOLTIP_ANIMATION_SPEED',
                         'suffix' => 'ms',
-                        'desc' => $this->l('Duración de la animación de entrada/salida (100-500ms recomendado)'),
+                        'desc' => $this->l('Duraciï¿½n de la animaciï¿½n de entrada/salida (100-500ms recomendado)'),
                         'class' => 'fixed-width-sm',
                         'tab' => 'advanced',
                     ),
@@ -457,16 +457,16 @@ class Colortooltip extends Module
                         'type' => 'switch',
                         'label' => $this->l('Throttling del mouse'),
                         'name' => 'COLORTOOLTIP_THROTTLE',
-                        'desc' => $this->l('Optimiza el rendimiento limitando la frecuencia de actualización del tooltip'),
+                        'desc' => $this->l('Optimiza el rendimiento limitando la frecuencia de actualizaciï¿½n del tooltip'),
                         'is_bool' => true,
                         'values' => array(
-                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sí')),
+                            array('id' => 'active_on', 'value' => 1, 'label' => $this->l('Sï¿½')),
                             array('id' => 'active_off', 'value' => 0, 'label' => $this->l('No'))
                         ),
                         'tab' => 'advanced',
                     ),
 
-                    // ===== PESTAÑA AYUDA =====
+                    // ===== PESTAï¿½A AYUDA =====
                     array(
                         'type' => 'html',
                         'name' => '',
@@ -483,7 +483,7 @@ class Colortooltip extends Module
     }
 
     /**
-     * Obtiene los valores actuales de configuración
+     * Obtiene los valores actuales de configuraciï¿½n
      */
     protected function getConfigFormValues()
     {
@@ -508,50 +508,57 @@ class Colortooltip extends Module
     }
 
     /**
-     * Contenido de la pestaña de ayuda
+     * Contenido de la pestaï¿½a de ayuda
      */
     private function getHelpContent()
     {
         return '
         <div class="panel">
             <div class="panel-heading">
-                <i class="icon-info-circle"></i> ' . $this->l('Guía de uso') . '
+                <i class="icon-info-circle"></i> ' . $this->l('Guï¿½a de uso') . '
             </div>
             <div class="panel-body">
-                <h4>' . $this->l('Configuración básica') . '</h4>
-                <p>' . $this->l('El módulo funciona automáticamente en todos los inputs de tipo color con la clase .input-color') . '</p>
+                <h4>' . $this->l('Configuraciï¿½n bï¿½sica') . '</h4>
+                <p>' . $this->l('El mï¿½dulo funciona automï¿½ticamente con todos los inputs de color de la pï¿½gina. Detecta:') . '</p>
+                <ul>
+                    <li><code>input[type="color"]</code> - ' . $this->l('Inputs estï¿½ndar de HTML5') . '</li>
+                    <li><code>.input-color</code> - ' . $this->l('Clase personalizada') . '</li>
+                    <li><code>.color-picker</code> - ' . $this->l('Clase comï¿½n en PrestaShop') . '</li>
+                    <li>' . $this->l('Cualquier input con clases relacionadas a color') . '</li>
+                </ul>
+                <p><strong>' . $this->l('No necesitas configurar nada, simplemente instala el mï¿½dulo y funciona automï¿½ticamente.') . '</strong></p>
                 
-                <h4>' . $this->l('Personalización por input') . '</h4>
+                <h4>' . $this->l('Personalizaciï¿½n por input') . '</h4>
                 <p>' . $this->l('Puedes personalizar cada input usando atributos data:') . '</p>
                 <pre><code>&lt;input type="color" class="input-color" 
-       data-color-tooltip="Descripción personalizada"
+       data-color-tooltip="Descripciï¿½n personalizada"
        data-show-preview="true"
        data-show-formats="true"
        data-show-history="true" /&gt;</code></pre>
                 
                 <h4>' . $this->l('Prioridad de contenido') . '</h4>
                 <ol>
-                    <li><code>data-color-tooltip</code> - ' . $this->l('Atributo específico') . '</li>
-                    <li><code>data-tooltip</code> - ' . $this->l('Atributo genérico') . '</li>
+                    <li><code>data-color-tooltip</code> - ' . $this->l('Atributo especï¿½fico') . '</li>
+                    <li><code>data-tooltip</code> - ' . $this->l('Atributo genï¿½rico') . '</li>
                     <li><code>title</code> - ' . $this->l('Atributo title nativo') . '</li>
                     <li><code>.sr-only</code> - ' . $this->l('Texto para screen readers') . '</li>
                     <li>' . $this->l('Valor del color como fallback') . '</li>
                 </ol>
                 
-                <h4>' . $this->l('Tema automático') . '</h4>
-                <p>' . $this->l('Cuando está activado, el tooltip cambia automáticamente entre tema claro y oscuro según la luminosidad del color seleccionado.') . '</p>
+                <h4>' . $this->l('Tema automï¿½tico') . '</h4>
+                <p>' . $this->l('Cuando estï¿½ activado, el tooltip cambia automï¿½ticamente entre tema claro y oscuro segï¿½n la luminosidad del color seleccionado.') . '</p>
                 
                 <h4>' . $this->l('Historial de colores') . '</h4>
-                <p>' . $this->l('Los colores se guardan automáticamente en localStorage. Haz click en un color del historial para aplicarlo al input actual.') . '</p>
+                <p>' . $this->l('Los colores se guardan automï¿½ticamente en localStorage. Haz click en un color del historial para aplicarlo al input actual.') . '</p>
                 
                 <h4>' . $this->l('Rendimiento') . '</h4>
-                <p>' . $this->l('El módulo usa un único tooltip reutilizable y event delegation para máxima eficiencia. El throttling está activado por defecto.') . '</p>
+                <p>' . $this->l('El mï¿½dulo usa un ï¿½nico tooltip reutilizable y event delegation para mï¿½xima eficiencia. El throttling estï¿½ activado por defecto.') . '</p>
             </div>
         </div>
         
         <div class="alert alert-info">
             <h4>' . $this->l('Soporte') . '</h4>
-            <p>' . $this->l('Si necesitas ayuda, consulta la documentación en GitHub o contacta con soporte técnico.') . '</p>
+            <p>' . $this->l('Si necesitas ayuda, consulta la documentaciï¿½n en GitHub o contacta con soporte tï¿½cnico.') . '</p>
         </div>
         ';
     }
